@@ -7,7 +7,7 @@ import Courses from './components/Courses';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './redux/store';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, StackActions} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeLight from './components/monthlyLeaderboard/icon/homeLight.svg';
 import HomeDark from './components/monthlyLeaderboard/icon/homeDark.svg';
@@ -30,40 +30,40 @@ const ICON_MAP_ACTIVE = {
 export default function App() {
   return (
     <Provider store={store}>
-      {/* <PersistGate persistor={persistor}> */}
-      <SafeAreaView style={styles.container}>
-        <NavigationContainer>
-          <Tab.Navigator
-            sceneContainerStyle={{backgroundColor: '#fff'}}
-            tabBarOptions={{
-              inactiveTintColor: '#7A8B94',
-              activeTintColor: '#3C4852',
-              labelStyle: styles.label,
-            }}
-            screenOptions={({route}) => {
-              const ActiveIcon = ICON_MAP_ACTIVE[route.name];
-              const InactiveIcon = ICON_MAP_INACTIVE[route.name];
-              return {
-                tabBarIcon: ({focused}) =>
-                  focused ? (
-                    <View style={styles.tab}>
-                      <View style={styles.tabTopBorder} />
-                      <ActiveIcon />
-                    </View>
-                  ) : (
-                    <View style={styles.tab}>
-                      <InactiveIcon />
-                    </View>
-                  ),
-              };
-            }}>
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Courses" component={Courses} />
-            <Tab.Screen name="Leaderboard" component={MonthlyLeaderboard} />
-          </Tab.Navigator>
-        </NavigationContainer>
-      </SafeAreaView>
-      {/* </PersistGate> */}
+      <PersistGate persistor={persistor}>
+        <SafeAreaView style={styles.container}>
+          <NavigationContainer>
+            <Tab.Navigator
+              sceneContainerStyle={{backgroundColor: '#fff'}}
+              tabBarOptions={{
+                inactiveTintColor: '#7A8B94',
+                activeTintColor: '#3C4852',
+                labelStyle: styles.label,
+              }}
+              screenOptions={({route}) => {
+                const ActiveIcon = ICON_MAP_ACTIVE[route.name];
+                const InactiveIcon = ICON_MAP_INACTIVE[route.name];
+                return {
+                  tabBarIcon: ({focused}) =>
+                    focused ? (
+                      <View style={styles.tab}>
+                        <View style={styles.tabTopBorder} />
+                        <ActiveIcon />
+                      </View>
+                    ) : (
+                      <View style={styles.tab}>
+                        <InactiveIcon />
+                      </View>
+                    ),
+                };
+              }}>
+              <Tab.Screen name="Home" component={Home} />
+              <Tab.Screen name="Courses" component={Courses} />
+              <Tab.Screen name="Leaderboard" component={MonthlyLeaderboard} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </SafeAreaView>
+      </PersistGate>
     </Provider>
   );
 }

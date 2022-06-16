@@ -1,5 +1,10 @@
-export const selectLeaderboardData = state => state.data;
-export const selectLoadingState = state => state.isLoading;
-export const selectErrorState = state => state.err;
-export const selectOffsetState = state => state.offset;
-export const selectHasPageLeftState = state => state.hasPageLeft;
+export const selectLeaderboardData = state => state.leaderboard.data;
+export const selectLoadingState = state => state.leaderboard.isLoading;
+export const selectErrorState = state => state.leaderboard.err;
+export const selectOffsetState = state => state.leaderboard.offset;
+export const selectHasPageLeftState = state => state.leaderboard.hasPageLeft;
+export const selectUserName = state => state.userInfo.email;
+export const selectUserEmail = state => state.userInfo.name;
+export const selectUserLoginState = state => state.userInfo.login;
+export const selectUserLoading = state => state.userInfo.isLoading;
+export const selectUserErr = state => state.userInfo.err;

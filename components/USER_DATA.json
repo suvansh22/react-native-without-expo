@@ -1,0 +1,18 @@
+{
+    "test@test.com" : {
+        "name": "Test",
+        "password": "abcde12345"
+    },
+    "test1@test.com": {
+        "name": "John",
+        "password": "abcde12345"
+    },
+    "test2@test.com": {
+        "name": "Jake",
+        "password": "abcde12345"
+    },
+    "test3@test.com": {
+        "name": "Jacob",
+        "password": "abcde12345"
+    }
+}

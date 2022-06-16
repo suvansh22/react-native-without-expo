@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 export default function Courses() {
   return (
-    <View style={styles.Container}>
+    <View style={styles.container}>
       <Text style={styles.text}>Courses</Text>
     </View>
   );
@@ -11,7 +11,7 @@ export default function Courses() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
