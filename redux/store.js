@@ -19,7 +19,7 @@ const config = {
   key: 'root',
   storage: AsyncStorage,
   stateReconciler: hardSet,
-  blacklist: ['err'],
+  blacklist: ['err', 'isLoading'],
 };
 const persistedReducer = persistReducer(config, userInfoSlice.reducer);
 export const store = configureStore({
