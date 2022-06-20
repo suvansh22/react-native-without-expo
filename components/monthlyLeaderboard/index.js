@@ -21,6 +21,7 @@ import {
 } from '../../redux/selectors';
 import LeaderboardItem from './LeaderboardItem';
 import HeroSection from '../heroSection';
+import Config from 'react-native-config';
 
 const ListHeaderComponent = () => {
   return (
@@ -53,7 +54,7 @@ export default function MonthlyLeaderboard() {
     try {
       await sleep(3000);
       const response = await Axios.get(
-        `https://api.relevel.com/api/v2/exams/leaderboard/?offset=${offset}&&limit=10`,
+        `${Config.BASE_API}/exams/leaderboard/?offset=${offset}&&limit=10`,
       );
       if (response.status >= 200 && response.status <= 299) {
         const fetchedData = response?.data;
