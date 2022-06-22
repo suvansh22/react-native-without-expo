@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios-staging": "ENVFILE=./enviornment/staging.env react-native run-ios",
+    "ios-prod": "ENVFILE=./enviornment/prod.env react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -19,6 +20,7 @@
     "axios": "^0.27.2",
     "react": "17.0.2",
     "react-native": "^0.68.2",
+    "react-native-code-push": "^7.0.4",
     "react-native-config": "^1.4.6",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-linear-gradient": "^2.5.6",

@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, StyleSheet, View, TouchableHighlight} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {actions} from '../redux/userInfoReducer';
+import Config from 'react-native-config';
 
 export default function Home({navigation}) {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export default function Home({navigation}) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
+      <Text>You are in {Config.env} env!!</Text>
       <Text>Your are logged in!</Text>
       <TouchableHighlight
         underlayColor={'#47B5FF'}

@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">myTestProject</string>
+    <string name="app_name">testAppAndroid</string>
 </resources>
+
+<!-- <resources>
+     <string name="app_name">AppName</string>
+     <string moduleConfig="true" name="CodePushDeploymentKey">r4jUqTGEZpE_hU33TxrC3XrRFOI7174lwaIJt</string>
+ </resources> -->
