@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   StyleSheet,
@@ -12,6 +12,10 @@ import USER_DATA from './USER_DATA.json';
 import {actions} from '../redux/userInfoReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectUserErr, selectUserLoading} from '../redux/selectors';
+import crashlytics from '@react-native-firebase/crashlytics';
+import perf from '@react-native-firebase/perf';
+import messaging from '@react-native-firebase/messaging';
+
 export default function Login({navigation}) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -19,7 +23,7 @@ export default function Login({navigation}) {
   const [password, setPassword] = useState('');
   const {addUserInfo, fetchUserInfo, errUserInfo} = actions;
   const isLoading = useSelector(selectUserLoading);
-  const isErr = useSelector(selectUserErr);
+  // const isErr = useSelector(selectUserErr);
   const sleep = ms => new Promise(resolve => setTimeout(() => resolve(), ms));
   const handleLogin = async () => {
     if (email.length <= 0 || name.length <= 0 || password.length <= 0) {
@@ -38,6 +42,25 @@ export default function Login({navigation}) {
       dispatch(errUserInfo());
     }
   };
+
+  async function customTrace() {
+    // Define & start a trace
+    const trace = await perf().startTrace('my_app_trace');
+    // Define trace meta details
+    await new Promise(resolve => setTimeout(() => resolve(), 3000));
+    trace.putAttribute('user', 'su_2');
+    trace.putAttribute('state', 'UP');
+    trace.putMetric('credits', 10);
+    // Stop the trace
+    await trace.stop();
+  }
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      console.log('working');
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+    return unsubscribe;
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -76,6 +99,22 @@ export default function Login({navigation}) {
           ) : (
             <ActivityIndicator size="small" color="#000" />
           )}
+        </TouchableHighlight>
+        <TouchableHighlight
+          disabled={isLoading}
+          underlayColor={'#47B5FF'}
+          onPress={() => crashlytics().crash()}
+          activeOpacity={0.6}
+          style={styles.button}>
+          <Text style={styles.buttonText}>Crash</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          disabled={isLoading}
+          underlayColor={'#47B5FF'}
+          onPress={customTrace}
+          activeOpacity={0.6}
+          style={styles.button}>
+          <Text style={styles.buttonText}>Custom Trace</Text>
         </TouchableHighlight>
       </View>
     </View>

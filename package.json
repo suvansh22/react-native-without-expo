@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "ENVFILE=./enviornment/staging.env react-native run-android",
     "ios-staging": "ENVFILE=./enviornment/staging.env react-native run-ios",
     "ios-prod": "ENVFILE=./enviornment/prod.env react-native run-ios",
     "start": "react-native start",
@@ -13,6 +13,10 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-firebase/app": "^15.0.0",
+    "@react-native-firebase/crashlytics": "^15.0.0",
+    "@react-native-firebase/messaging": "^15.0.0",
+    "@react-native-firebase/perf": "^15.0.0",
     "@react-navigation/bottom-tabs": "^5.11.15",
     "@react-navigation/native": "^5.x",
     "@react-navigation/stack": "^5.x",

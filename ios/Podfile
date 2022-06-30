@@ -19,8 +19,6 @@ target 'myTestProject' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
   target 'myTestProjectTests' do
     inherit! :complete
